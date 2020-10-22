@@ -1,0 +1,34 @@
+---
+
+- name: Install dependency packages for Docker
+  apt: name={{ item }} state=installed
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - python3-pip
+    - virtualenv
+    - python3-setuptools
+  become: true
+
+- name: Install GPG apt key for the docker repo
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add the docker repo
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker

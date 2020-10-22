@@ -1,0 +1,4 @@
+create_containers: 10
+container_name: docker
+container_image: ubuntu
+container_command: sleep 1d

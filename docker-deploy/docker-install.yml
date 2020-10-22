@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  roles:
+  - remove_old
+  - install_docker
+
+
+- hosts: workstations02
+  roles:
+  - test_installation
+  

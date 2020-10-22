@@ -1,0 +1,36 @@
+---
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+    autoremove: yes
+  become: true
+
+- name: Remove docker
+  apt:
+    pkg:  docker
+    state: absent
+  become: true
+
+- name: Remove docker-engine
+  apt:
+    pkg: docker-engine
+    state: absent
+  become: true
+
+- name: Remove docker.io
+  apt:
+    pkg: docker.io
+    state: absent
+  become: true
+ 
+- name: Remove containerd 
+  apt:
+    pkg: containerd 
+    state: absent
+  become: true
+
+- name: Remove runc
+  apt:
+    pkg: runc
+    state: absent
+  become: true
